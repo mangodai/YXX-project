@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<title></title>
+<link rel="stylesheet" href="/Views/Exam/css/index.css" />
+<link rel="stylesheet" href="/Views/Exam/css/time.css" />
+<script src="/Views/Exam/js/jquery-1.9.1.min.js"></script>
+<link rel="stylesheet" href="/Views/Exam/css/btns.css" />
+<script type="text/javascript" src="/Views/Exam/js/time.js"></script>
+<style type="text/css">
+.error {
+	background-image: url(/Views/Exam/img/error.png);
+}
+
+.success {
+	background-image: url(/Views/Exam/img/success.png);
+}
+</style>
+<script>
+	//填充考生信息
+	$(document).ready(function() {
+		function stop() {
+			return false;
+		}
+		document.oncontextmenu = stop;
+		//获取考生信息
+		$.ajax({
+			type : "post",
+			url : "getZKZ",
+			async : true,
+			success : function(data) {
+//				console.info(data);
+				$("#name").text("姓　名:" + data[0].name);
+				$("#sex").text("性　别:" + data[0].sex);
+				$("#idCardNum").text("身份证号码:" + data[0].id_card);
+				$("#school").text("所属驾校:" + data[0].school);
+				$("#kd").text("考　点:" + data[0].school);
+				$("#pc").text("计算机编号:" + data[0].pcname);
+				$("#img").attr("src", data[0].img);
+			},
+			error : function(data) {
+			}
+		});
+	})
+</script>
+<script>
+	/**
+	 * 如果答题卡的背景是红色就表示该题已经答完，并且是回答错我。已经不能再点击提交按钮了
+	 * 如果答题卡的背景是绿色就标识该题已经回答，并且回答正确。已经不能再点击提交按钮了
+	 * 如果答题卡的背景是白色的标识该题没有回答，可以随意跳转，也可以点击提交按钮
+	 */
+	var pdata;
+	//点击的是答题卡的序号的话，需要跳转到答题卡序号上.
+	function render_dtk(pdata, now_id) {
+		$("#optionC").show();
+		$('#optionD').show();
+		$("#CX").show();
+		$("#DX").show();
+//		console.info("获取到当前需要跳转的序号:" + now_id);
+		$("#question").text("第" + now_id + "题:" + pdata[now_id - 1].STTM); //写入问题
+		$("#optionA").text("A:" + pdata[now_id - 1].XXA);
+		$("#optionB").text("B:" + pdata[now_id - 1].XXB);
+		$("#optionC").text("C:" + pdata[now_id - 1].XXC);
+		$("#optionD").text("D:" + pdata[now_id - 1].XXD);
+		$("#tid").text(pdata[now_id - 1].ID);
+		$("#now_id").text(now_id);
+		var img = pdata[now_id - 1].IMAGE;
+		if (img.length == 0) {
+			$("#kstp").attr('src', "/Views/Exam/picture/blake.png");
+		} else {
+			$("#kstp").attr('src', "/Views/Exam/picture/" + img + ".png");
+		}
+		//					console.info(pdata[now_id - 1].STTM);
+		//					alert("----->>>>");
+		//调整显示
+		if (document.getElementById('optionC').style.display = 'none') {
+			//						alert("optionC的答案为空");
+			document.getElementById('optionC').style.display = 'inline';
+		}
+		if (document.getElementById('optionD').style.display = 'none') {
+			document.getElementById('optionD').style.display = 'inline';
+		}
+		if ($("#optionA").html() != "A:") {
+			$("#A_answer").text("A");
+			$("#A_input").val("A");
+		}
+		if ($("#optionB").html() != "A:") {
+			$("#B_answer").text("B");
+			$("#B_input").val("B");
+		}
+		if ($("#optionC").html() != "C:") {
+			$("#C_answer").text("C");
+			$("#C_input").val("C");
+		}
+		if ($("#optionD").html() != "D:") {
+			$("#D_answer").text("D");
+			$("#D_input").val("D");
+		}
+		if ($("#optionA").html() == "A:") {
+			$("#optionA").text("Y:" + "正  确");
+			$("#A_answer").text("Y");
+			$("#A_input").val("Y");
+		}
+		if ($("#optionB").html() == "B:") {
+			$("#optionB").text("N:" + "错  误");
+			$("#B_answer").text("N");
+			$("#B_input").val("N");
+		}
+		if ($("#optionC").html() == "C:") {
+			$("#optionC").hide();
+			$("#CX").hide();
+		}
+		if ($("#optionD").html() == "D:") {
+			$("#optionD").hide();
+			$("#DX").hide();
+		}
+	};
+	$(document)
+			.ready(
+					function() {
+						var xh;
+						$.ajax({
+							type : "post",
+							url : "sendST",
+							async : true,
+							success : function(data) {
+								pdata = data;
+								var now_id;
+//								console.info(pdata);
+								//							jsT(pdata);
+								init(data[0]); //渲染数据
+								//						render_dtk(pdata,now_id);
+								//						render(data,now_id);
+							}
+						});
+						//第一题
+						function init(pdata) {
+							$("#question").text("第1题:" + pdata.STTM); //写入问题
+							$("#optionA").text("A:" + pdata.XXA);
+							$("#optionB").text("B:" + pdata.XXB);
+							$("#optionC").text("C:" + pdata.XXC);
+							$("#optionD").text("D:" + pdata.XXD);
+							$("#tid").text(pdata.ID);
+							$("#now_id").text(1);
+							var img = pdata.IMAGE;
+							if (img.length == 0) {
+								$("#kstp").attr('src',
+										"/Views/Exam/picture/blake.png");
+							} else {
+								$("#kstp").attr('src',
+										"/Views/Exam/picture/" + img + ".png");
+							}
+							//						console.info(pdata.STTM);
+							if ($("#optionA").html() == "A:") {
+								$("#optionA").text("Y:" + "正  确");
+								$("#A_answer").text("Y");
+								$("#A_input").val("Y");
+							}
+							if ($("#optionB").html() == "B:") {
+								$("#optionB").text("N:" + "错  误");
+								$("#B_answer").text("N");
+								$("#B_input").val("N");
+							}
+							if ($("#optionC").html() == "C:") {
+								$("#optionC").hide();
+								$("#CX").hide();
+							}
+							if ($("#optionD").html() == "D:") {
+								$("#optionD").hide();
+								$("#DX").hide();
+							}
+							//对图片的纠正
+							if ("img[kstp]".src == "") {
+							}
+						}
+						;
+						//获取点击的序号
+						var table = document.getElementById("dtk"), tds = table
+								.getElementsByTagName("td");
+						for (var i = 0, j = tds.length; i < j; i++) {
+							tds[i].onclick = function() {
+								//							alert(this.innerHTML);
+								var now_id = this.innerHTML;
+								//							console.info(pdata);
+								//执行跳转到目标序号上.
+								render_dtk(pdata, now_id);
+								//alert($(this).attr("id"));
+							}
+						}
+						;
+						//				function render(data){
+						//					console.info(data.length);
+						//					$('#t_id').text(data);
+						//					console.info(data.question);
+						//				}
+						//				var img = $('.myphoto').src;
+						//				var time = window.setInterval(function(){
+						//					alert(img);
+						//				},15000)
+					});
+
+	function photo() {
+		//				alert(video.videoWidth);
+		//				 var t=setTimeout("alert('5 seconds!')",2000)
+		//				var img = $('.myphoto')[0].src;
+		//				console.info(img);
+		//			    document.getElementById("test").src = this.img;
+	}
+	//点击提交按钮的话,序号是自动+1
+	function render_btn(pdata) {
+		//now_id:标识血药跳转的目标题目的序号.
+		//			    alert(pdata);
+	};
+	//下一题
+	function next() {
+		var now_id = document.getElementById("now_id").innerHTML;
+		var id = +now_id + 1;
+		alert("下一题编号:" + id);
+	};
+	var ok_id;
+	//定义一个全局的保存错题总数的变量
+	var error_NUM = 0;
+	//获取最终的分数，写入数据库，参数：
+	function finalMark() {
+		var photo = $('#take_photo').attr("src");
+		var id_card = $('#idCardNum').html().split(":");
+		if (error_NUM <= 10) {
+			var mark = 100 - error_NUM;
+			layer.alert("小主真棒呀！您已经通过科目一考试叻！您的分数是:" + mark + "分！", {
+				skin : 'layui-layer-lan',
+				closeBtn : 0,
+				shift : 4
+			//动画类型
+			});
+			$.ajax({
+				type : "post",
+				url : "SvaeToMark",
+				async : true,
+				data : {
+					"id_card" : id_card[1],
+					"mark" : mark,
+					"photo":photo
+				},
+				dataType : "json",
+				success : function(data) {
+					},
+				error:function(data){
+					}
+				});
+		}
+	}
+
+	function tjEvent() {
+		//获取提交的序号，为了保证不允许做重复
+		var now_id = $('#now_id').html();
+		var now_id_yy = "#" + $('#now_id').html();
+		//var value  = $('input[name="radioName"]:checked').val(); //获取被选中Radio的Value值
+		var t_id = $('#tid').html();
+		var answer = $('input[name="answer"]:checked').val();
+		;
+		$.ajax({
+			type : "post",
+			url : "findByIdAndAnswerToMark",
+			async : true,
+			data : {
+				"t_id" : t_id,
+				"t_answer" : answer
+			},
+			dataType : "json",
+			success : function(data) {
+				if (data.count == "测试") {
+					error_NUM++;
+					//错误就把当前的答题卡该题目背景变色
+					$(now_id_yy).addClass("error");
+
+				}
+				if (data.msg == "回答正确！") {
+					//错误就把当前的答题卡该题目背景变色
+					$(now_id_yy).addClass("success");
+
+				}
+//				alert("当前已经回答错误的试题总数:" + error_NUM);
+				layer.alert(data.msg, {
+					skin : 'layui-layer-lan',
+					closeBtn : 0,
+					shift : 4
+				//动画类型
+				});
+				if (error_NUM > 10) {
+					//向服务器发送Ajax请求说明考生成绩不合格！
+					layer.alert("请继续努力吧，您已经回答错误了10道题目了！", {
+						skin : 'layui-layer-lan',
+						closeBtn : 0,
+						shift : 4
+					//动画类型				
+					});
+					//询问框
+					layer.confirm('请继续努力吧，您的成绩已经不合格了~~(>_<)~~', {
+						btn : [ '离开', '继续' ]
+					//按钮
+					}, function() {
+						//触发离开的事件
+						window.history.back(-1);
+					}, function() {
+						//触发继续考试的事件
+					});
+				}
+			}
+		});
+		//自动当前编号+1下跳
+		render_dtk(pdata, +now_id + 1);
+		//改变当前答题卡的背景
+	};
+</script>
+<script type="text/javascript">
+	//时间处理
+	var int = self.setInterval("clock()", 1000);
+	//对时间处理js
+	function clock() {
+		//获取剩余分钟数
+		var minute = $('#minute_show').text();
+		if (minute == "0分") {
+			var second = $('#second_show').text();
+			if (second == "0秒") {
+				layer.alert("时间到了！呵呵哒！", {
+					skin : 'layui-layer-lan',
+					closeBtn : 0,
+					shift : 4
+				//动画类型
+				});
+				window.clearInterval(int);
+			}
+		}
+	};
+</script>
+</style>
+</head>
+
+<body>
+	<div class="content">
+		<div class="left_info">
+			<!--
+                	作者：947796393@qq.com
+                	时间：2016-02-28
+                	描述：
+                -->
+			<div class="ks_lx">
+				<fieldset>
+					<legend id="title">考试类型</legend>
+					<p id="info">广西省桂林市科目一考试</p>
+				</fieldset>
+			</div>
+			<!--
+                	作者：947796393@qq.com
+                	时间：2016-02-28
+                	描述：
+                -->
+			<div class="ks_sj">
+				<fieldset>
+					<legend id="title">剩余时间</legend>
+					<div class="time-item">
+						<center>
+							<strong id="minute_show"></strong> <strong id="second_show"></strong>
+						</center>
+					</div>
+				</fieldset>
+			</div>
+			<!--
+                	作者：947796393@qq.com
+                	时间：2016-02-28
+                	描述：
+                -->
+			<div class="user_info">
+				<fieldset>
+					<legend id="title">考生信息</legend>
+					<div class="photo">
+						<center>
+							<video style="border: double #1E90FF 2px;" height="180px"
+								width="240px" autoplay="autoplay" onclick="photo()"></video>
+							<img id="take_photo" style="display: none;" src="">
+							<canvas style="display: none;"></canvas>
+							<script src="/Views/Exam/js/photo.js"></script>
+						</center>
+					</div>
+
+					<div class="myinfo">
+						<span id="name" class="info"></span><br /> <span id="sex"
+							class="info"></span><br /> <span id="idCardNum" class="info"></span><br />
+						<span class="info">驾考车型 ：C1</span><br /> <span id="school"
+							class="info"></span><br /> <span id="kd" class="info">考点名称
+							：金鸡岭驾校</span><br />
+					</div>
+				</fieldset>
+			</div>
+		</div>
+		<!--
+                	作者：947796393@qq.com
+                	时间：2016-02-28
+                	描述：
+                -->
+		<div class="right_info">
+			<!--
+                	作者：947796393@qq.com
+                	时间：2016-02-28
+                	描述：
+                -->
+			<div class="ks_nr">
+				<fieldset>
+					<legend id="title">考试题目</legend>
+					<div class="tm">
+						<h5 id="question"></h5>
+						<span id="optionA"> </span><br /> <span id="optionB"> </span><br />
+						<span id="optionC"> </span><br /> <span id="optionD"> </span><br />
+
+						<a id="tid" style="display: none;"></a> <a id="now_id"
+							style="display: none;"></a>
+					</div>
+					<div class="tp">
+						<img id="kstp" src="" width="180px" height="100px" src="" />
+					</div>
+					<div class="answer">
+						<div
+							style="padding-top: 0px; padding-right: 0px; padding-bottom: 20px; float: left;">
+							<span>请选择您的答案：</span> <label id="AX"><input id="A_input"
+								name="answer" type="radio" /><a id="A_answer"
+								class="button button-glow button-border button-rounded button-primary"
+								style="width: 10px; height: 40px;">A</a></label> <label id="BX"><input
+								id="B_input" name="answer" type="radio" value="B" /><a
+								id="B_answer"
+								class="button button-glow button-border button-rounded button-primary"
+								style="width: 10px; height: 40px;">B</a></label> <label id="CX"><input
+								id="C_input" name="answer" type="radio" value="C" /><a
+								id="C_answer"
+								class="button button-glow button-border button-rounded button-primary"
+								style="width: 10px; height: 40px;">C</a></label> <label id="DX"><input
+								id="D_input" name="answer" type="radio" value="D" /><a
+								id="D_answer"
+								class="button button-glow button-border button-rounded button-primary"
+								style="width: 10px; height: 40px;">D</a></label> &nbsp;&nbsp;<a id="TJ"
+								class="button button-glow button-rounded button-caution"
+								style="width: 10px; height: 40px;" onclick="tjEvent()">&nbsp;√&nbsp;</a>
+							<!--  <a id="next" class="button button-glow button-rounded button-caution" style="width: 10px; height: 40px;" onclick="">提交试卷</a> -->
+						</div>
+						<!--<div style="padding-right:0px;padding-bottom:10px;">
+							   <span>
+								   	<div>																	  
+								   		 
+								   	</div>
+							   </span>								
+							</div>-->
+					</div>
+				</fieldset>
+			</div>
+
+			<div class="dtk">
+				<fieldset>
+					<legend id="title">答题卡信息</legend>
+					<div class="ts_xx">
+						<span>请认真作答，完成之后写提交...</span>
+					</div>
+					<br />
+					<div class="da">
+						<table id="dtk" width="100%" border="1" cellspacing="0">
+							<tr align="center">
+								<td id="1">1</td>
+								<td id="2">2</td>
+								<td id="3">3</td>
+								<td id="4">4</td>
+								<td id="5">5</td>
+								<td id="6">6</td>
+								<td id="7">7</td>
+								<td id="8">8</td>
+								<td id="9">9</td>
+								<td id="10">10</td>
+								<td id="11">11</td>
+								<td id="12">12</td>
+								<td id="13">13</td>
+								<td id="14">14</td>
+								<td id="15">15</td>
+								<td id="16">16</td>
+								<td id="17">17</td>
+								<td id="18">18</td>
+								<td id="19">19</td>
+								<td id="20">20</td>
+								<td id="21">21</td>
+								<td id="22">22</td>
+								<td id="23">23</td>
+								<td id="24">24</td>
+								<td id="25">25</td>
+							</tr>
+							<tr align="center">
+								<td id="26">26</td>
+								<td id="27">27</td>
+								<td id="28">28</td>
+								<td id="29">29</td>
+								<td id="30">30</td>
+								<td id="31">31</td>
+								<td id="32">32</td>
+								<td id="33">33</td>
+								<td id="34">34</td>
+								<td id="35">35</td>
+								<td id="36">36</td>
+								<td id="37">37</td>
+								<td id="38">38</td>
+								<td id="39">39</td>
+								<td id="40">40</td>
+								<td id="41">41</td>
+								<td id="42">42</td>
+								<td id="43">43</td>
+								<td id="44">44</td>
+								<td id="45">45</td>
+								<td id="46">46</td>
+								<td id="47">47</td>
+								<td id="48">48</td>
+								<td id="49">49</td>
+								<td id="50">50</td>
+							</tr>
+							<tr align="center">
+								<td id="51">51</td>
+								<td id="52">52</td>
+								<td id="53">53</td>
+								<td id="54">54</td>
+								<td id="55">55</td>
+								<td id="56">56</td>
+								<td id="57">57</td>
+								<td id="58">58</td>
+								<td id="59">59</td>
+								<td id="60">60</td>
+								<td id="61">61</td>
+								<td id="62">62</td>
+								<td id="63">63</td>
+								<td id="64">64</td>
+								<td id="65">65</td>
+								<td id="66">66</td>
+								<td id="67">67</td>
+								<td id="68">68</td>
+								<td id="69">69</td>
+								<td id="70">70</td>
+								<td id="71">71</td>
+								<td id="72">72</td>
+								<td id="73">73</td>
+								<td id="74">74</td>
+								<td id="75">75</td>
+							</tr>
+							<tr align="center">
+								<td id="76">76</td>
+								<td id="77">77</td>
+								<td id="78">78</td>
+								<td id="79">79</td>
+								<td id="80">80</td>
+								<td id="81">81</td>
+								<td id="82">82</td>
+								<td id="83">83</td>
+								<td id="84">84</td>
+								<td id="85">85</td>
+								<td id="86">86</td>
+								<td id="87">87</td>
+								<td id="88">88</td>
+								<td id="89">89</td>
+								<td id="90">90</td>
+								<td id="91">91</td>
+								<td id="92">92</td>
+								<td id="93">93</td>
+								<td id="94">94</td>
+								<td id="95">95</td>
+								<td id="96">96</td>
+								<td id="97">97</td>
+								<td id="98">98</td>
+								<td id="99">99</td>
+								<td id="100">100</td>
+							</tr>
+						</table>
+					</div>
+				</fieldset>
+			</div>
+			<script tyle="text/javascript">
+				//获取点击的序号
+				//			var table = document.getElementById("dtk");
+				//			tds = table.getElementsByTagName("td");							
+				//			        for (var i = 0, j = tds.length; i < j; i++) {
+				//								tds[i].onclick = function() {
+				//									alert(this.innerHTML);
+				//									var now_id = this.innerHTML;
+				//									alert(now_id);
+				//									//执行跳转到目标序号上.
+				//									render_dtk(pdata,now_id)
+				//			//						alert($(this).attr("id"));
+				//								}
+				//							}
+			</script>
+			<div class="ad">
+				<fieldset>
+					<legend id="title">广告更精彩</legend>
+					<p id="ad"
+						style="color: #FF0000; font-size: 20px; font-weight: bold;">金鸡岭驾校温馨提醒您：90分为合格！</p>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+
+	<div class="temp">
+		<script src="/Views/Exam/layer-v2.2/layer/layer.js"></script>
+	</div>
+
+	<!--  
+//使用js模版技术自动生成试卷题目
+	<script type="text/javascript"
+		src="/Views/Exam/laytpl-v1.1/laytpl/laytpl.js"></script>
+	<!--第一步：编写模版。你可以使用一个script标签存放模板，如：-->
+	<script type="text/javascript"
+		src="/Views/Exam/laytpl-v1.1/laytpl/laytpl.js"></script>
+	<script id="demo" type="text/html">
+			<h1>{{ d.title }}</h1>
+			<ul>
+				{{# for(var i = 0, len = d.list.length; i
+				< len; i++){ }} <li>
+					<!-- <h4>{{i+1}}</h4> -->
+					<span>第{{i+1}}题：{{ d.list[i].STTM }}</span><br />
+					<span>A选项：{{ d.list[i].XXA.length ==0 ? '正确' :d.list[i].XXA}}</span><br />
+					<span>B选项：{{ d.list[i].XXB.length ==0 ? '错误' :d.list[i].XXB}}</span><br />
+					<span>C选项：{{ d.list[i].XXC.length ==0 ? null :d.list[i].XXC}}</span><br />
+					<span>D选项：{{ d.list[i].XXD.length ==0 ? null :d.list[i].XXD}}</span><br />
+					</li>
+					{{# } }}
+			</ul>
+		</script>
+
+	<!--第二步：建立视图。用于呈现渲染结果。-->
+	<div id="view"></div>
+
+	<!--第三步：渲染模版-->
+	<script>
+		function jsT(pdata) {
+			var data = {
+				title : '前端攻城师',
+				list : pdata
+			};
+			var gettpl = document.getElementById('demo').innerHTML;
+			laytpl(gettpl).render(data, function(html) {
+				document.getElementById('view').innerHTML = html;
+			});
+		}
+	</script>
+	<input type="button" value="测试layer" id="test1" onclick="test1()" />
+	<input type="button" value="获取当前分数" id="test2" onclick="test2()" />
+	<input type="button" value="测试最终分数" id="test3" onclick="finalMark()" />
+	<input type="button" value="测试时间" id="test4" onclick="second()" />
+	<input type="button" value="测试获取头像" id="test5" onclick="test3()" /> 
+	<script>
+		function test1() {
+			//弹出一个页面层
+			layer.open({
+				type : 1,
+				area : [ '600px', '360px' ],
+				shadeClose : true, //点击遮罩关闭
+				content : '\<\div style="padding:20px;">自定义内容\<\/div>'
+			});
+		};
+		function test3() {
+			var photo = $('#take_photo').attr("src");
+			alert(photo);
+		}
+
+		function test2() {
+			alert("获取分数中...");
+			$.ajax({
+				type : "post",
+				url : "mark",
+				async : true,
+				success : function(data) {
+					var info = data;
+					layer.alert(data.msg, {
+						skin : 'layui-layer-lan',
+						closeBtn : 0,
+						shift : 4
+					//动画类型
+					});
+				},
+				error : function(data) {
+					layer.alert("失败！可能是您的网络出现问题，请联系管理员！", {
+						skin : 'layui-layer-lan',
+						closeBtn : 0,
+						shift : 4
+					//动画类型
+					});
+				}
+			});
+		}
+	</script>
+</body>
+<!--
+        	作者：947796393@qq.com
+        	时间：2016-04-25
+        	描述：
+          //弹出一个页面层
+	      layer.open({
+	          type: 1,
+	          area: ['600px', '360px'],
+	          shadeClose: true, //点击遮罩关闭
+	          content: '\<\div style="padding:20px;">当前分数:\<\/div>'
+	      });
+        -->
+
+</html>

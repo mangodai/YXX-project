@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<link rel="stylesheet" href="/Views/Admin/css/themes/default/easyui.css" />
+<script type="text/javascript" src="/Views/Admin/js/jquery.min.js"></script>
+<script type="text/javascript" src="/Views/Admin/js/jquery.easyui.min.js"></script>
+</head>
+
+<body>
+	<fieldset>
+		<legend style="font-size: 18px;">考生分数查询</legend>
+		<table id="tt" class="easyui-datagrid"
+			style="width:100%; height: 250px" url="/exam/getMark"
+			toolbar="#tb" title="Load Data" iconCls="icon-save" rownumbers="true"
+			pagination="true">
+			<thead>
+				<tr>
+					<th field="name" width="20%" align="center">姓名</th>
+					<th field="id_card" width="25%" align="center">身份证编号</th>
+					<th field="mark" width="25%" align="center">分数</th>
+					<th field="regtime" width="25%" align="center">时间</th>
+				</tr>
+			</thead>
+		</table>
+		<div id="tb" style="padding: 3px">
+			<span>姓名:</span> <input id="name"
+				style="line-height: 26px; border: 1px solid #ccc"> <a
+				href="#" class="easyui-linkbutton" plain="true" onclick="doSearch()">查  询</a>
+				
+				<a
+				href="#" class="easyui-linkbutton" plain="true" onclick="ylcjd()">成绩单预览</a>
+		</div>
+	</fieldset>
+		<script>
+	//当用户输入查询值并按下查询按钮时，'doSearch' 函数将被调用：
+		function doSearch(){
+	$('#tt').datagrid('load',{
+		name: $('#name').val()
+	});
+};
+function ylcjd(){
+	var row = $('#tt').datagrid('getSelected');
+	alert(row.name);
+	//弹出一个页面层
+	layer.open({
+	    type: 2,
+	    title: '成绩单预览',
+	    shadeClose: true,
+	    shade: 0.8,
+	    area: ['600px', '90%'],
+	    content: 'http://www.baidu.com' //iframe的url
+	}); 
+}
+	</script>
+</body>
+
+</html>

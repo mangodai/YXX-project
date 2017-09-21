@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>金鸡岭驾校</title>
+		<!--css-->
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+		<!--/css-->
+		<!-- for-mobile-apps -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="keywords" content="Mechanical Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+		<script type="application/x-javascript">
+			addEventListener("load", function() {
+				setTimeout(hideURLbar, 0);
+			}, false);
+
+			function hideURLbar() {
+				window.scrollTo(0, 1);
+			}
+		</script>
+		<!-- //for-mobile-apps -->
+		<!-- js -->
+		<script src="js/jquery.min.js">
+		</script>
+		<script src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/move-top.js"></script>
+		<script type="text/javascript" src="js/easing.js"></script>
+		<!-- /js -->
+		<!--fonts-->
+		<link href='http://fonts.useso.com/css?family=Belgrano' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.useso.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>
+		<!--/fonts-->
+		<!--script-->
+		<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event) {
+					event.preventDefault();
+					$('html,body').animate({
+						scrollTop: $(this.hash).offset().top
+					}, 900);
+				});
+			});
+		</script>
+		<!--/script-->
+	</head>
+
+	<body>
+		<!--header-->
+		<div class="header">
+			<div class="header-nav">
+				<div class="container">
+					<div class="logo">
+						<a href="index.html"><h1>金鸡岭驾校</h1></a>
+					</div>
+					<div class="navigation">
+						<nav class="navbar navbar-default">
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+									<span class="sr-only">Toggle navigation</span>
+									<span class="icon-bar"> </span>
+									<span class="icon-bar"> </span>
+									<span class="icon-bar"> </span>
+								</button>
+							</div>
+							<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav">
+								<li class="active"><a href="/Views/Home/index.html">驾校首页<span
+										class="sr-only">(current)</span></a></li>
+								<li><a href="/Views/Home/关于我们.html">驾校信息</a></li>
+								<li><a href="/Views/Home/报名须知.html">报名须知</a></li>
+								<li><a href="/Views/Home/关于我们.html">关于我们</a></li>
+								<li><a href="#">驾校论坛</a></li>
+							</ul>								<div class="clearfix"> </div>
+							</div>
+							<!-- /.navbar-collapse -->
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- script-for-menu -->
+		<script>
+			$("span.menu").click(function() {
+				$(".top-nav ul").slideToggle("slow", function() {});
+			});
+		</script>
+		<!-- script-for-menu -->
+		<div class="banner-left">
+			<div class="banner-title">
+				<div id="top" class="callbacks_container">
+					<ul class="rslides" id="slider3">
+						<li>
+							<div class="banner2 banner5">
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+		<div class="banner-bottom-strip">
+			<div class="container">
+				<p>金鸡岭驾校欢迎您报考...</p>
+			</div>
+		</div>
+		<!--inner-page-about-->
+		<div class="services">
+			<div class="container">
+				<h3>驾校简介</h3>
+			</div>
+		</div>
+		<style>
+			.content {
+				padding-left: 300px;
+				padding-right: 200px;
+				padding-top: 0px;
+				padding-bottom: 100px;
+			}
+		</style>
+		<div class="content">
+			<img src="fsIMG/x4.jpg" style="width: 100%;height: 100%;border: double #0066CC 10px;" />
+			<font color="#1b3688" style="font-size: 36px;"><br />金鸡岭驾校</font>
+			</strong>目前的主营业务是驾驶员培训。公司占地面积2000余亩，拥有世界一流的训练场及配套设施，现有宝来、桑塔纳、伊兰特、爱丽舍和金龙大型客车、中型客车、大型货车、牵引车、摩托车等各种训练用车2000部，员工3000余人，总资产达数亿元。</p>
+			<p style="PADDING-TOP: 8px">多年来，公司始终坚持把向社会输送合格的驾驶人作为己任，把学员是否满意作为工作的唯一标准，独树一帜地创立了“朋友式的教学关系”、“我们的服务与您的需求同步”、“三级服务链”等全新理念，形成了“服务、遵章、团结、自律、创新”促进公司建设与发展的十字方针，特别是围绕“让每位学员都满意”的工作追求，率先在行业内提出了杜绝行业不正之风、维护学员利益的“五项承诺”，以自己独特的经营理念和管理模式成为“开创全新理念的先锋，引领驾校行业的脚步”之先驱，为提升整个驾驶人培训行业的从业者素质和管理水平积累了宝贵的经验，为建设和谐交通做出了应有的贡献。</p>
+			<p style="PADDING-TOP: 8px">&nbsp;&nbsp;&nbsp; 公司先后荣获2013年1月中国保护消费者基金会颁发的《维护消费者权益诚信服务满意单位》、《保护消费者权益3 15放心消费单位》称号；2012年7月北京市公安局公安交通管理局车辆管理所颁发的《北京市安全文明驾校》称号；2012年1月中国合作贸易企业协会、中国企业改革与发展研究会、中国企业信用评价中心颁发的《中国AAA级信用企业》、《2011年度全国文明诚信示范单位》称号；2011年1月新京报颁发的《我最信赖的驾驶培训品牌》称号。2009年，公司承担了为国庆60周年群众游行彩车培训驾驶员的光荣政治任务，荣获首都国庆60周年群众游行指挥部颁发的“首都国庆60周年群众游行支持贡献单位”荣誉称号。</p>
+			<p style="PADDING-TOP: 8px">公司坐落于北京市大兴区金星西路，拥有花园般的环境、酒店式的服务，建有目前国际硬件设施标准等级最高的训练和考试场，也是全国第一个“残疾人驾驶汽车训练示范基地”，拥有外籍学员培训资质，年培训学员数量和考试合格率均居驾校行业之首。</p>
+			<p style="PADDING-TOP: 8px">&nbsp;&nbsp;&nbsp; 公司把“提升中国驾驶人培训行业的整体水平，使更多的交通参与者树立严格遵守交通法规和文明行车的意识，掌握过硬的驾驶技术，从而最大限度的减少道路交通事故，缓解道路交通拥堵”作为我们每位东方时尚人的神圣使命。在内部管理方面，坚持“以人为本”的管理理念，建立了党总支部、团委和工会组织及上下沟通机制。在事业发展的同时，不断提高员工的福利待遇，增强了公司的凝聚力和向心力。 </p>
+			<p style="PADDING-TOP: 8px"></p>
+			<p style="PADDING-TOP: 8px">成就铸就了品牌，辉煌积淀为历史。展望未来，东方时尚人始终保持着清醒的头脑——我们的事业永无止境，要战胜昨天的自我，不断地超越自己，为构建和谐文明畅通的交通环境做出更大的贡献！</p>
+			<div style="PADDING-TOP: 8px"><strong>企业文化</strong></div>
+			<div style="PADDING-TOP: 8px">一、五项承诺：<br>1、杜绝吃、拿、卡、要现象发生，如有举报，有一赔十； <br>2、按我校教学计划训练者保证通过各项考试，考取驾驶证； <br>3、班车不空站、不甩站、保证训练时间； <br>4、餐饮绝对卫生，因我校原因致病者，赔偿全部医疗费用；　 <br>5、所有费用均按价目表收取，保证学习过程中不以任何名义增加收费。</div>
+			<div style="PADDING-TOP: 8px">二、八个率先：<br>1、全市驾校行业中率先推出五项承诺 <br>2、全市驾校行业中率先教练车全部配有空调 <br>3、全市驾校行业中率先统一员工着装 <br>4、全市驾校行业中率先全体教练员在车前站立迎候学员 <br>5、全市驾校行业中率先实施学员考评教练员系统 <br>6、全市驾校行业中率先推出 “ 朋友式教学 ” 理念 <br>7、全市驾校行业中率先引进模拟教学设备改进教学方法 <br>8、全市驾校行业中率先推出签约客户服务系统</div>
+			<div style="PADDING-TOP: 8px">三、九项服务：<br>1、亚洲一流的训练场及考试场，设施完备，环境优美，训练车全部带助力， 考试合格率更高.<br>2、交通法规培训开设普通班和假日班，学习不必耽误工作。 <br>3、交通法规考试合格5个工作日后即可到校预约车辆开始训练。 <br>4、自有预约大厅，电话及网上预约系统方便学员考勤和约车。 <br>5、班车豪华舒适，多条线路，多个时段，接送学员。如因校方原因使班车延误，您可乘出租车来校，持发票校方报销车费。 <br>6、朋友式的教学，和蔼不敷衍，严格不粗暴。独有的教练员考评系统，他教您，您评他。绝无吃、拿、卡、要，如有举报有一赔十。
+				<br>7、按我校教学计划参加训练者确保您能通过各项考试，取得驾驶证。 <br>8、电子保险箱、擦鞋机、爱心伞、浴室、美容美发、便利店等多项服务方便学习训练。 <br>9、台球室、咖啡厅、网吧等多项娱乐服务让您学车更舒心。</div>
+			<div style="PADDING-TOP: 8px"><strong>其他服务：</strong></div>
+			<div style="PADDING-TOP: 8px">1.餐饮服务： <br>我校专业的营养师和厨师将给您集便利与营养为一体的中式快餐。 <br>2.浴室服务： <br>一天的训练或许会使您身心疲惫，校内的免费浴室将为您洗去疲倦。<br>3.美发室：<br>我校设有美发室，为您提供美容美发服务。 <br>4.医务服务 <br>如您偶感不适，请与医务室联系我们，将为您提供及时援助。</div>
+		</div>
+		<!--/inner-page-about-->
+		 <div class="footer">
+			 <div class="container">				 	
+				 <div class="col-md-3 ftr_navi ftr">
+					 <h3>关于费用</h3>
+					 <ul>
+						 <li><a href="/Views/Home/收费标准.html">收费标准</a></li>
+						 <li><a href="#">收费标准</a></li>
+						 <li><a href="#">收费标准</a></li>
+						 <li><a href="/Views/Home/网上报名.html">网上报名</a></li>
+					 </ul>
+				 </div>
+				 <div class="col-md-3 ftr_navi ftr">
+					 <h3>关于报名</h3>
+					 <ul>
+					 	<li><a href="#">报名须知</a></li>
+					 	<li><a href="#">网上报名</a></li>
+					 	<li><a href="#">乘车路线</a></li>
+					 </ul>
+				 </div>
+				 <div class="col-md-3 get_in_touch ftr">
+					  <h3>联系我们</h3>
+					  <address style="color: white;">广西省桂林市金鸡岭驾校</address>
+					  <p>GuiLin . China</p>
+					  <p>+86 186 7733 8530</p>
+				 </div>
+				 <div class="col-md-3 ftr-logo">
+					 <a href="#"><h3>我的信息</h3></a>
+					 <strong style="font-size: 20px;color: white;">学号:1251210111</strong><br />
+					 <strong style="font-size: 20px;color: white;">姓名:陈永鹏</strong></b>
+				 </div>
+				<div class="clearfix"> </div>
+			 </div>
+		  </div>
+		<!---End-container---->
+		<!---->
+		<script type="text/javascript">
+			$(document).ready(function() {
+				/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+				*/
+				$().UItoTop({
+					easingType: 'easeOutQuart'
+				});
+			});
+		</script>
+		<a href="#to-top" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+		<!---->
+	</body>
+
+</html>

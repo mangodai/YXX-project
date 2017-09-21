@@ -1,0 +1,11 @@
+.time-item strong {
+	background: dodgerblue;
+	color: #fff;
+	line-height: 20px;
+	font-size: 18px;
+	font-family: Arial;
+	padding: 0 10px;
+	margin-right: 10px;
+	border-radius: 5px;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="/Views/Admin/css/common.css">
+		<link rel="stylesheet" href="/Views/Admin/css/main.css">
+		<script src="/Views/Admin/layer/jquery-1.9.1.js"></script>
+		<script src="/Views/Admin/layer/layer.js"></script>
+		<script type="text/javascript" src="/Views/Admin/js/colResizable-1.3.min.js"></script>
+		<script type="text/javascript" src="/Views/Admin/js/common.js"></script>
+		<title></title>
+	<title></title>
+		<script>
+			function sendData() {
+				//组织数据
+				var tm = $('#tm').val();
+				var stdl = $("#stdl option:selected").text(); //获取选中的项
+				var stlx = $("#stlx option:selected").text(); //获取选中的项
+				var stlb = $("#stlb option:selected").text(); //获取选中的项
+				var answer = $("#answer option:selected").text(); //获取选中的项
+				var A_answer = $('#A_answer').val();
+				var B_answer = $('#B_answer').val();
+				var C_answer = $('#C_answer').val();
+				var D_answer = $('#D_answer').val();
+				$.ajax({
+					type:"post",
+					url:"/exam/saveTM",
+					async:true,
+					data:{'tm':tm,'stdl':stdl,'stlx':stlx,'stlb':stlb,'answer':answer,'A_answer':A_answer,'B_answer':B_answer,'C_answer':C_answer,'D_answer':D_answer},
+					success:function(data){
+						alert(data.msg  +"<--->" +data.success);
+						alert("保存成功");
+					},
+					error:function(data){
+						
+					}
+				});
+			
+				//				target.bind("click",function(){});
+			}
+		</script>
+	</head>
+
+	<body>
+		<script>
+			$(document).ready(function() {
+				layer.msg(' 请 认 真 填 写 此 处 信 息 ');
+				$('#xx').show();
+				$('#tp').hide();
+			});
+
+			function getListValue() {
+				var value = document.getElementById("stdl").value; //获取值
+				alert(value);
+			}
+
+			function xxChange() {
+				var lx = $("select[id='stlx']").val();
+				if (lx == 'pdt') {
+					$('#xx').hide();
+					//									document.all.stlx.options[1].selected = true;
+				}
+				if (lx == 'xzt') {
+					$('#xx').show();
+					//									document.all.stlx.options[1].selected = true;
+				}
+				alert(lx);
+			}
+
+			function tpChange() {
+				var lx = $("select[id='stlb']").val();
+				if (lx == 'wzt') {
+					$('#tp').hide();
+					//									document.all.stlx.options[1].selected = true;
+				}
+				if (lx == 'tpt') {
+					$('#tp').show();
+					//									document.all.stlx.options[1].selected = true;
+				}
+			}
+		</script>
+
+		<div class="container">
+			<div id="search_bar" class="mt10">
+				<div class="box">
+					<div class="box_border">
+						<div class="box_top"><b class="pl15">主要信息</b></div>
+						<div class="box_center pt10 pb10">
+							<table class="form_table" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td>
+										<label class="td_right">试题题目信息:</label>
+										<textarea name="" id="tm" cols="30" rows="10" style="width: 400px;" class="textarea"></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label>试题大类信息:</label>
+										<div class="select_border">
+											<div class="select_containers ">
+												<select id="stdl" name="" class="select" style="width: 400px;"> 
+										           <option value="1">道路交通安全法律、法规和规章</option> 
+										           <option value="2">交通信号</option>
+										           <option value="3">安全行车、文明驾驶基础知识</option>
+										           <option value="4">机动车驾驶操作相关基础知识</option>
+										        </select>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label>试题类型信息:</label>
+										<div class="select_border">
+											<div class="select_containers ">
+												<select id="stlx" name="" class="select" style="width: 400px;" onchange="xxChange()"> 
+										           <option selected="selected" value="xzt">选择题</option> 
+										           <option value="pdt">判断题</option> 
+										        </select>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label>试题类别信息:</label>
+										<div class="select_border">
+											<div class="select_containers ">
+												<select id="stlb" name="" class="select" style="width: 400px;" onchange="tpChange()"> 
+										           <option selected="selected" value="wzt">文字题</option> 
+										           <option value="tpt">图片题</option> 
+										        </select>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label>正确答案信息:</label>
+										<div class="select_border">
+											<div id="answer" class="select_containers ">
+												<select name="" class="select" style="width: 400px;"> 
+										           <option>A</option>
+										           <option>B</option>
+										           <option>C</option>
+										           <option>D</option>
+										           <option>Y</option>
+										           <option>N</option>
+										        </select>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="box_bottom pb5 pt5 pr10" style="border-top:1px solid #dadada;">
+							<div class="search_bar_btn" style="text-align:right;">
+								<input id="tj" type="submit" value="确定" style="width: 100px;" class="ext_btn ext_btn_submit" onclick="sendData()">
+								<input type="button" value="返回" style="width: 100px;" onclick="location.href='javascript:history.go(-1)'" class="ext_btn">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--
+            	作者：947796393@qq.com
+            	时间：2016-04-20
+            	描述：
+            -->
+			<div id="xx">
+				<div id="search_bar" class="mt10">
+					<div class="box">
+						<div class="box_border">
+							<div class="box_top"><b class="pl15">添加选项</b></div>
+							<div class="box_center pt10 pb10">
+								<table class="form_table" border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td>
+											<label class="td_right">选项A:</label>
+											<input id="A_answer" type="text" name="name" class="input-text lh25" size="120">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label class="td_right">选项B:</label>
+											<input id="B_answer" type="text" name="name" class="input-text lh25" size="120">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label class="td_right">选项C:</label>
+											<input id="C_answer" type="text" name="name" class="input-text lh25" size="120">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label class="td_right">选项D:</label>
+											<input id="D_answer" type="text" name="name" class="input-text lh25" size="120">
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--
+            	作者：947796393@qq.com
+            	时间：2016-04-22
+            	描述：上传图片域
+            -->
+
+			<div id="tp">
+				<div id="search_bar" class="mt10">
+					<div class="box">
+						<div class="box_border">
+							<div class="box_top"><b class="pl15">上传图片信息</b></div>
+							<div class="box_center pt10 pb10">
+								<table class="form_table" border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td>
+											<form id="form1" action="/exam/saveTM_pic" method="post" enctype="multipart/form-data">
+												<input type="file" id="file" name="file"></input>
+												<input type="submit" onclick="" id="btn" value="上传">
+											</form>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<input style="display: inline;" type="button" value="获取下拉单选框的值" onclick="getListValue()" />
+	</body>
+
+</html>
