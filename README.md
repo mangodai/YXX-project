@@ -1,69 +1,30 @@
-## <center>淘淘商城</center>
-### **参照博客地址：**
-- 地址：http://blog.csdn.net/u012453843/article/category/6970308
-- 如有疑问，请加qq群：633121984! 
-- **再次超级感谢群主！@在京奋斗者** 
+## <center>驾校考试系统</center>
+
 ### **所涉及技术：**
-- 缓存： redis集群
-- 搜索 ：solr集群
-- 模板：FreeMarker
-- 数据库：mysql、mycat技术
-- 视图框架：Spring MVC 4.3
-- 持久层框架：MyBatis 3.3
-- 核心框架：Spring Framework 4.3
-- 定时器：Quartz
-- 消息中间件：ActiveMQ
-- 数据库连接池：Druid 1.1
-- 日志管理：SLF4J 1.7、Log4j
-- 服务中间件：dubbo
-- 分布式管理：zookpeer
-- 图片服务器：FastDFS
+- 框架： jfinal
+- 数据库 ：mysql
+- 服务器：jetty
 
 ### 部署环境说明：
-#### 1.Solr-Cloud集群环境说明
-- 3台zookpeer
-```
-server.1=192.168.206.10:2891:4881
-
-server.2=192.168.206.10:2892:4882
-
-server.3=192.168.206.10:2893:5883
-```
-- 4台tomcat环境
-```
-tomcat-1    9091         9001            9011
-tomcat-2    9092         9002            9012
-tomcat-3    9093         9003            9013
-tomcat-4    9094         9004            9014
-
-
-```
-
-#### 2.FastDFS
-- Nginx服务
-- FastDFS服务
-#### 2.Redis集群
-- 6台Redis
-```
-root       1653      1  0 04:37 ?        00:00:21 /usr/local/redis/bin/redis-server 192.168.206.10:6379            
-root      95518      1  0 09:21 ?        00:00:00 ./redis-server 192.168.206.10:7001 [cluster]
-root      95523      1  0 09:21 ?        00:00:00 ./redis-server 192.168.206.10:7002 [cluster]
-root      95528      1  0 09:21 ?        00:00:00 ./redis-server 192.168.206.10:7003 [cluster]
-root      95533      1  0 09:21 ?        00:00:00 ./redis-server 192.168.206.10:7004 [cluster]
-root      95538      1  0 09:21 ?        00:00:00 ./redis-server 192.168.206.10:7005 [cluster]
-root      95543      1  0 09:21 ?        00:00:00 ./redis-server 192.168.206.10:7006 [cluster]
-```
+**使用Eclipse导入工程，执行数据库脚本文件，运行主方法，启动工程。**
+[![启动](http://oy3l6utxs.bkt.clouddn.com/%E5%90%AF%E5%8A%A8.png "启动")](http://oy3l6utxs.bkt.clouddn.com/%E5%90%AF%E5%8A%A8.png "启动")
 ### 开发环境及包结构
-[![环境](http://oy3l6utxs.bkt.clouddn.com/%E7%8E%AF%E5%A2%83.jpg "环境")](http://oy3l6utxs.bkt.clouddn.com/%E7%8E%AF%E5%A2%83.jpg "环境")
-### 商城首页
-[![商城首页](http://oy3l6utxs.bkt.clouddn.com/%E6%B7%98%E6%B7%98%E7%BD%91%E4%B8%8A%E5%95%86%E5%9F%8E%E9%A1%B5%E9%9D%A2.png "商城首页")](http://oy3l6utxs.bkt.clouddn.com/%E6%B7%98%E6%B7%98%E7%BD%91%E4%B8%8A%E5%95%86%E5%9F%8E%E9%A1%B5%E9%9D%A2.png "商城首页")
-### 商品搜索页面
-[![商品搜索页面](http://oy3l6utxs.bkt.clouddn.com/%E5%95%86%E5%93%81%E6%90%9C%E7%B4%A2.png "商品搜索页面")](http://oy3l6utxs.bkt.clouddn.com/%E5%95%86%E5%93%81%E6%90%9C%E7%B4%A2.png "商品搜索页面")
-### 商品详情页面
-[![商品详情页面](http://oy3l6utxs.bkt.clouddn.com/%E5%95%86%E5%93%81%E8%AF%A6%E6%83%85%E9%A1%B5.png "商品详情页面")](http://oy3l6utxs.bkt.clouddn.com/%E5%95%86%E5%93%81%E8%AF%A6%E6%83%85%E9%A1%B5.png "商品详情页面")
-### 购物车页面
-[![购物车页面](http://oy3l6utxs.bkt.clouddn.com/%E8%B4%AD%E7%89%A9%E8%BD%A6%E9%A1%B5%E9%9D%A2.png "购物车页面")](http://oy3l6utxs.bkt.clouddn.com/%E8%B4%AD%E7%89%A9%E8%BD%A6%E9%A1%B5%E9%9D%A2.png "购物车页面")
-### 商城登录页面
-[![商场登录页面](http://oy3l6utxs.bkt.clouddn.com/%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2.png "商场登录页面")](http://oy3l6utxs.bkt.clouddn.com/%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2.png "商场登录页面")
-### 商场后台管理系统
-[![商场后台管理系统界面](http://oy3l6utxs.bkt.clouddn.com/%E6%B7%98%E6%B7%98%E5%95%86%E5%9F%8E%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F.png "商场后台管理系统界面")](http://oy3l6utxs.bkt.clouddn.com/%E6%B7%98%E6%B7%98%E5%95%86%E5%9F%8E%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F.png "商场后台管理系统界面")
+[![工程结构](http://oy3l6utxs.bkt.clouddn.com/%E5%B7%A5%E7%A8%8B%E7%BB%93%E6%9E%84.png "工程结构")](http://oy3l6utxs.bkt.clouddn.com/%E5%B7%A5%E7%A8%8B%E7%BB%93%E6%9E%84.png "工程结构")
+### 官网首页
+[![官网首页](http://oy3l6utxs.bkt.clouddn.com/%E5%AE%98%E7%BD%91%E9%A6%96%E9%A1%B5.png "官网首页")](http://oy3l6utxs.bkt.clouddn.com/%E5%AE%98%E7%BD%91%E9%A6%96%E9%A1%B5.png "官网首页")
+### 考试首页
+#####  - 准考证页面
+*根据考场计算机IP锁定当前计算机使用者的考生信息。*
+[![考生信息](http://oy3l6utxs.bkt.clouddn.com/%E5%87%86%E8%80%83%E8%AF%81.png "考生信息")](http://oy3l6utxs.bkt.clouddn.com/%E5%87%86%E8%80%83%E8%AF%81.png "考生信息")
+#####  - 考试页面
+*随机抓取考生考试途中照片，方便生成考试报告；大于等于90分为合格。*
+[![考试页面](http://oy3l6utxs.bkt.clouddn.com/%E8%80%83%E8%AF%95%E9%A1%B5%E9%9D%A2.png "考试页面")](http://oy3l6utxs.bkt.clouddn.com/%E8%80%83%E8%AF%95%E9%A1%B5%E9%9D%A2.png "考试页面")
+### 后台管理登录页面
+[![登录](http://oy3l6utxs.bkt.clouddn.com/%E5%90%8E%E5%8F%B0%E9%A6%96%E9%A1%B5.png "登录")](http://oy3l6utxs.bkt.clouddn.com/%E5%90%8E%E5%8F%B0%E9%A6%96%E9%A1%B5.png "登录")
+### 添加考生界面，获取考生信息
+[![新增考生](http://oy3l6utxs.bkt.clouddn.com/%E5%BD%95%E5%8F%96%E8%80%83%E7%94%9F%E4%BF%A1%E6%81%AF%EF%BC%8C%E8%87%AA%E5%8A%A8%E5%88%86%E9%85%8D%E5%BA%A7%E4%BD%8D.png "新增考生")](http://oy3l6utxs.bkt.clouddn.com/%E5%BD%95%E5%8F%96%E8%80%83%E7%94%9F%E4%BF%A1%E6%81%AF%EF%BC%8C%E8%87%AA%E5%8A%A8%E5%88%86%E9%85%8D%E5%BA%A7%E4%BD%8D.png "新增考生")
+### 新增试题
+- 试题分为选择、判断；
+[![新增试题](http://oy3l6utxs.bkt.clouddn.com/%E8%AF%95%E9%A2%98%E6%B7%BB%E5%8A%A0.png "新增试题")](http://oy3l6utxs.bkt.clouddn.com/%E8%AF%95%E9%A2%98%E6%B7%BB%E5%8A%A0.png "新增试题")
+### 试题管理
+[![试题管理](http://oy3l6utxs.bkt.clouddn.com/%E8%AF%95%E9%A2%98%E7%AE%A1%E7%90%86.png "试题管理")](http://oy3l6utxs.bkt.clouddn.com/%E8%AF%95%E9%A2%98%E7%AE%A1%E7%90%86.png "试题管理")
