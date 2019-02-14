@@ -1,6 +1,7 @@
 package com.chen.admin.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,6 +11,7 @@ import com.chen.domain.Stxxb;
 import com.chen.tools.IPUtil;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
+import net.sf.cglib.core.CollectionUtils;
 
 public class AdminService {
 	/**
@@ -70,7 +72,7 @@ public class AdminService {
 	
 	public List<DbPc> getPCInfo(){
 		StringBuffer sb = new StringBuffer();
-		sb.append(" SELECT * FROM db_pc WHERE state=0  ORDER BY RAND() LIMIT 1 ");
+		sb.append(" SELECT * FROM db_pc WHERE state=1 LIMIT 1 ");
 		List<DbPc> pc = DbPc.dao.find(sb.toString());
 		return pc;
 		
@@ -81,11 +83,17 @@ public class AdminService {
 	 * @return
 	 */
 	public List<DbPc> sendPC(String ip){
-		
+		String pcName = UUID.randomUUID().toString().replace("-", "").substring(1, 32);
 		//SELECT * FROM db_pc WHERE state=1 ORDER BY RAND() LIMIT 1
 		StringBuffer sb = new StringBuffer();
-		sb.append(" SELECT name,state FROM db_pc WHERE state=0  ORDER BY RAND() LIMIT 1 ");
+		sb.append(" SELECT * FROM db_pc WHERE ip = '" + ip + "' LIMIT 1 ");
 		List<DbPc> pc = DbPc.dao.find(sb.toString());
+		if (null == pc || pc.size() == 0) {
+			DbPc dao = DbPc.dao;
+			dao.setPcname(pcName);
+			dao.setIP(ip);
+			dao.save();
+		}
 		return pc;
 		
 	}

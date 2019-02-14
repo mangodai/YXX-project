@@ -192,12 +192,16 @@ public class ExamController extends Controller {
 		if (getPara("name") != null) {
 			where = getPara("name");
 			map.put("total", new ExamService().count(where));
-			sql = " select STLB,STDL,STLX,STTM,ZQDA from stxxb  where STTM like '%"
+			sql = " select stlbb.NAME as STLB, stdlb.NAME as STDL, stlxb.NAME as STLX,STTM,ZQDA " +
+					"from stxxb, stdlb, stlbb, stlxb " +
+					"where stxxb.STLB = stlbb.ID AND stxxb.STDL = stdlb.ID AND stxxb.STLX = stlxb.ID AND like '%"
 					+ where + "%' limit " + currpage + ",10";
 
 		} else {
 			map.put("total", new ExamService().count());
-			sql = " select STLB,STDL,STLX,STTM,ZQDA from stxxb  limit "
+			sql = " select stlbb.NAME as STLB, stdlb.NAME as STDL, stlxb.NAME as STLX,STTM,ZQDA " +
+					"from stxxb, stdlb, stlbb, stlxb " +
+					"where stxxb.STLB = stlbb.ID AND stxxb.STDL = stdlb.ID AND stxxb.STLX = stlxb.ID  limit "
 					+ currpage + ",10 ";
 		}
 		// map.put("total", 914);
@@ -353,7 +357,7 @@ public class ExamController extends Controller {
 			// }
 			// // //错误的数目≤10，成绩合格，考试结束
 			// // renderJson("{\"Error\":{\"msg\":\"成绩合格，考试结束！\"}}");
-			info = "{\"msg\":\"试题的提示信息，应该从数据库根据题目的编号获取显示信息。\",\"count\":\"测试\"}";
+			info = "{\"msg\":\"回答错误\",\"count\":\"测试\"}";
 		}
 		renderJson(info);
 	}
@@ -367,7 +371,7 @@ public class ExamController extends Controller {
 		String id_card = getPara("id_card");
 		String mark = getPara("mark");
 		String photo = getPara("photo");
-
+		System.out.println("---SvaeToMark---" + mark);
 		// 定义时间格式化
 		SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		System.out.println(photo);
@@ -407,6 +411,7 @@ public class ExamController extends Controller {
 	 */
 	public void getZKZ() {
 		HttpServletRequest request = getRequest();
+//		String IP = IPUtil.getRealIpAddr(request);
 		String IP = IPUtil.getRealIpAddr(request);
 		setSessionAttr("id_num", new ExamService().getExam_idCard(IP));
 		System.out.println("从session中获取用户的身份证编号:" + getSessionAttr("id_num"));
@@ -496,7 +501,7 @@ public class ExamController extends Controller {
 	/**
 	 * 查询成绩：SELECT cjd.`mark` ,cjd.`regtime`,db_examer.`name` FROM cjd LEFT JOIN
 	 * db_examer ON cjd.`id_card`=db_examer.`id_card` AND
-	 * db_examer.`name`='陈永鹏';
+	 * db_examer.`name`='胡欣欣';
 	 */
 	public void getMark() {
 		String sql = null;

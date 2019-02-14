@@ -18,7 +18,7 @@ var snapshot = function () {
     if (localMediaStream) {
 
         ctx.drawImage(video, 0, 0);
-        img.src=canvas.toDataURL('image/jpeg');//webp
+        img.src = canvas.toDataURL('image/jpeg');//webp
         //document.querySelector('img').src = canvas.toDataURL('image/webp');
     }
 };
@@ -29,26 +29,26 @@ var snapshot = function () {
 // 	   img.height='250px';
 // 	}
 var sizeCanvas = function () {
-   setTimeout(function () {  
+    setTimeout(function () {
         canvas.width = video.videoWidth;
-        canvas.height =video.videoHeight;
+        canvas.height = video.videoHeight;
         img.width = video.videoWidth;
-        img.height =video.videoHeight;  	
+        img.height = video.videoHeight;
     }, 2000);
 };
- 
- //实现管理员单击按钮提交照片
- var btnCapture;
- btnCapture = document.getElementById('capture');
- btnCapture.addEventListener('click', snapshot, false);
 
- 
+//实现管理员单击按钮提交照片
+var btnCapture;
+btnCapture = document.getElementById('capture');
+btnCapture.addEventListener('click', snapshot, false);
+
+
 navigator.mozGetUserMedia(
     {video: true},
     function (stream) {
         video.src = window.URL.createObjectURL(stream);
-        localMediaStream = stream;      
-        sizeCanvas();		
+        localMediaStream = stream;
+        sizeCanvas();
     },
     function () {
         alert('your browser does not support getUserMedia');

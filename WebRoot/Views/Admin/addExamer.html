@@ -1,130 +1,144 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<title>Bootstrap标题</title>
-		<link rel="stylesheet" href="bootstrap-3.3.5/dist/css/bootstrap.css" />
-		<script src="jquery1.9/jquery-1.9.1.js"></script>
-		<script src="bootstrap-3.3.5/dist/js/bootstrap.js"></script>
-	</head>
+<head>
+    <meta charset="UTF-8">
+    <title>Bootstrap标题</title>
+    <link rel="stylesheet" href="bootstrap-3.3.5/dist/css/bootstrap.css"/>
+    <script src="jquery1.9/jquery-1.9.1.js"></script>
+    <script src="bootstrap-3.3.5/dist/js/bootstrap.js"></script>
+</head>
 
-	<body>
-		<script>
-		    var pdata;
-			$(window).load(function() {
-				$.ajax({
-					type:"post",
-					url:"/admin/getPC",
-					async:true,
-					success:function(data){
-						pdata = data;
-						console.info(data);
-						$('#num').attr("placeholder",data[0].pcname);
-						alert("如果您发现无法获取自动分配的计算机名称的话，请强制清空浏览器缓存！");
-						alert("自动分配的计算机名称:"+data[0].pcname);
-						
-					},
-					error:function(data){
-						
-					}
-				});
-			});
+<body>
+<script>
+    var pdata;
+    $(window).load(function () {
+        $.ajax({
+            type: "post",
+            url: "/admin/sendPC",
+            async: true,
+            success: function (data) {
+                pdata = data;
+                console.info(data);
+                $('#num').attr("placeholder", data[0].pcname);
+                alert("如果您发现无法获取自动分配的计算机名称的话，请强制清空浏览器缓存！");
+                alert("自动分配的计算机名称:" + data[0].pcname);
 
-			function sendData() {
-				var userName = document.getElementById("userName").value;
-				var idCardNum = document.getElementById("idCardNum").value;
-				var sex = $('input:radio:checked').val();
-				var school = document.getElementById("school").value;
-				var base64photo = document.getElementById("img").src;
-				//				console.info(base64photo);				
-				$.ajax({
-					type: "post",
-					url: "/admin/addExamer",
-					data: {
-						'userName': userName,
-						'idCardNum': idCardNum,
-						'sex': sex,
-						'school': school,
-						'base64photo': base64photo,
-						'pcName':pdata[0].pcname
-					},
-					async: true
-				});
-			}
-		</script>
-		<style>
-			#main {
-				padding-top: 20px;
-			}
-			
-			.photo {
-				width: 100%;
-				height: 480px;
-				margin: 0 auto;
-			}
-			
-			.space {
-				height: 30px;
-				/*border: 1px solid white;*/
-			}
-		</style>
-		<fieldset>
-			<legend>考生信息录入</legend>
-			<div id="main">
-				<form class="form-horizontal">
-					<div class="form-group">
-						<label for="userName" class="col-sm-2 control-label">考生姓名</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="userName" name="userName" placeholder="考生姓名">
-						</div>
-					</div>
+            },
+            error: function (data) {
 
-					<div class="form-group">
-						<label for="idCardNum" class="col-sm-2 control-label">身份证编号</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="idCardNum" name="idCardNum" placeholder="身份证编号">
-						</div>
-					</div>
+            }
+        });
+    });
 
-					<div class="form-group">
-						<label for="sex" class="col-sm-2 control-label">性别</label>
-						<label class="radio-inline">
-  <input type="radio" name="sex" id="inlineRadio1" value="男" style="margin-left: 20px;"> 男
-</label>
-						<label class="radio-inline">
-  <input type="radio" name="sex" id="inlineRadio2" value="女" style="margin-left: 20px;"> 女
-</label>
-					</div>
+    function sendData() {
+        var userName = document.getElementById("userName").value;
+        var idCardNum = document.getElementById("idCardNum").value;
+        var sex = $('input:radio:checked').val();
+        var school = document.getElementById("school").value;
+        var base64photo = document.getElementById("img").src;
+        console.info(base64photo);
+        $.ajax({
+            type: "post",
+            url: "/admin/addExamer",
+            data: {
+                'userName': userName,
+                'idCardNum': idCardNum,
+                'sex': sex,
+                'school': school,
+                'base64photo': base64photo,
+                'pcName': pdata[0].pcname
+            },
+            async: true,
+            success: function (data) {
+                alert("注册成功，请开始考试");
+            }
+        });
+    }
+</script>
+<style>
+    #main {
+        padding-top: 20px;
+    }
 
-					<div class="form-group">
-						<label for="school" class="col-sm-2 control-label">考生所在驾校</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="school" name="school" placeholder="金鸡岭驾校">
-						</div>
-					</div>
+    .photo {
+        width: 100%;
+        height: 480px;
+        margin: 0 auto;
+    }
 
-					<div class="form-group">
-						<label for="num" class="col-sm-2 control-label">考生所分配的计算机编号</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="num" name="num" readonly="readonly">
-						</div>
-					</div>
-					<div class="space"></div>
-					<div class="photo">
-						<center></center>
-						<video autoplay width="320" height="240"></video>
-						<img id="img" style="display:none;" src="">
-						<canvas class="img-thumbnail" style="border:1px solid #2AABD2" width="640" height="480"></canvas>
-						<button type="button" id="capture" class="btn btn-info" onclick="photo()">立即拍照</button>
-						<script src="js/photo.js"></script>
-						</center>
-					</div>
-					<div class="space"></div>
-					<button id="submit" style="padding-top: 20px;" type="button" class="btn btn-primary btn-lg btn-block" onclick="sendData()"> 确    定 </button>
-				</form>
-			</div>
-		</fieldset>
-	</body>
+    .space {
+        height: 30px;
+        /*border: 1px solid white;*/
+    }
+
+    video, canvas {
+        border: 1px solid gray;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+    }
+</style>
+<fieldset>
+    <legend>考生信息录入</legend>
+    <div id="main">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="userName" class="col-sm-2 control-label">考生姓名</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="userName" name="userName" placeholder="考生姓名">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="idCardNum" class="col-sm-2 control-label">身份证编号</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="idCardNum" name="idCardNum" placeholder="身份证编号">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="sex" class="col-sm-2 control-label">性别</label>
+                <label class="radio-inline">
+                    <input type="radio" name="sex" id="inlineRadio1" value="男" style="margin-left: 20px;"> 男
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="sex" id="inlineRadio2" value="女" style="margin-left: 20px;"> 女
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="school" class="col-sm-2 control-label">考生所在驾校</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="school" name="school" placeholder="驾校考试系统">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="num" class="col-sm-2 control-label">考生所分配的计算机编号</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="num" name="num" readonly="readonly">
+                </div>
+            </div>
+            <div class="space"></div>
+            <div class="photo">
+                <center>
+                    <video autoplay width="320" height="240"></video>
+                    <img id="img" style="display:none;" src="">
+                    <canvas class="img-thumbnail" style="border:1px solid #2AABD2" width="640" height="480"></canvas>
+                    <button type="button" id="capture" class="btn btn-info">立即拍照</button>
+                    <!--<button type="button" id="capture" class="btn btn-info" onclick="photo()">立即拍照</button>-->
+                    <!--<script src="js/photo.js"></script>-->
+                    <script src="js/photo2.js"></script>
+                </center>
+            </div>
+            <div class="space"></div>
+            <button id="submit" style="padding-top: 20px;" type="button" class="btn btn-primary btn-lg btn-block"
+                    onclick="sendData()"> 确 定
+            </button>
+        </form>
+    </div>
+</fieldset>
+</body>
 
 </html>

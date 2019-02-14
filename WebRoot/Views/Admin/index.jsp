@@ -100,7 +100,7 @@
 		<div id="side_here">
 			<div id="side_here_l" class="fl"></div>
 			<div id="here_area" class="fl">欢迎您使用！如若有问题，请联系 +86
-				186-0773-8530</div>
+				136-0704-2810</div>
 		</div>
 	</div>
 	<div class="side">
@@ -172,7 +172,7 @@
 	</div>
 	<div class="bottom">
 		<div id="bottom_bg">
-			<b>姓名:陈永鹏©学号:1251210111</b>
+			<b>姓名:胡欣欣©学号:20152051</b>
 		</div>
 
 	</div>

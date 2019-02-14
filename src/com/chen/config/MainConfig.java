@@ -27,9 +27,9 @@ public class MainConfig extends JFinalConfig {
 	 * 配置jetty启动所需的参数
 	 */
 	private static final String webAppDir = "WebRoot";
-	private static final int port = 9999;
+	private static final int port = 8080;
 	private static final String context = "/";
-	private static final int scanIntervalSeconds = 10;
+	private static final int scanIntervalSeconds = 0;
 
 	/**
 	 * jetty启动的main方法

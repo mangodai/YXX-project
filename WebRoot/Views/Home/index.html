@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>金鸡岭驾校</title>
+<title>驾校考试系统</title>
 <!--css-->
 <link href="/Views/Home/css/bootstrap.css" rel="stylesheet">
 <link href="/Views/Home/css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -20,9 +20,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="/Views/Home/js/easing.js"></script>
 <!-- /js -->
 <!--fonts-->
-<link href='http://fonts.useso.com/css?family=Belgrano' rel='stylesheet' type='text/css'>
-<link href='http://fonts.useso.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
-<link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>
+<!--<link href='http://fonts.useso.com/css?family=Belgrano' rel='stylesheet' type='text/css'>-->
+<!--<link href='http://fonts.useso.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>-->
+<!--<link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>-->
 <!--/fonts-->
 <!--script-->
 <script type="text/javascript">
@@ -33,11 +33,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				});
 			});
 </script>
-<!--
-	作者：947796393@qq.com
-	时间：2016-03-06
-	描述：add
--->
+
 <link rel="stylesheet" href="/Views/Home/tel/style/cs_q.css" type="text/css"/>
 <script type="text/javascript" src="/Views/Home/tel/js/cs_q.js"></script>
 
@@ -51,7 +47,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header-nav">
 	<div class="container">
 		<div class="logo">
-			<a href="index.html"><h1>金鸡岭驾校</h1></a>
+			<a href="index.html"><h1>驾校考试系统</h1></a>
 		</div>
 		<div class="navigation">
 			<nav class="navbar navbar-default">
@@ -66,10 +62,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
 					  <ul class="nav navbar-nav">
 						<li class="active"><a href="/Views/Home/index.html">驾校首页<span class="sr-only">(current)</span></a></li>
-						<li><a href="/Views/Home/关于我们.html">驾校信息</a></li>
+						<li ><a href="/Views/Home/收费标准.html">收费标准</a></li>
 						<li><a href="/Views/Home/报名须知.html">报名须知</a></li>
 						<li><a href="/Views/Home/关于我们.html">关于我们</a></li>
-						<li><a href="#">驾校论坛</a></li>
+						  <li><a href="/exam/index">开始考试</a></li>
 					  </ul>
 			  <div class="clearfix"> </div>
 			</div><!-- /.navbar-collapse -->
@@ -111,25 +107,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!--//End-slider-script -->
 						<div class="banner-title"> 
 							<div  id="top" class="callbacks_container">
-								<ul class="rslides" id="slider3">
+								<ul class="rslides" id="slider3" style="color: black">
 									<li>
 										<div class="banner2">
-											<h2>金鸡岭驾校欢迎你</h2>
-											<p>我们很专业.</p>
+											<h2>驾校考试系统欢迎你</h2>
 										</div>
 									</li>
 									<li>
 										<div class="banner1">
-											<h2>快速拿驾照，就选择金鸡岭驾校！</h2>
-											<p></p>
+											<h2>遵纪守法，诚信考试</h2>
 										</div>
 									</li>
-									<li>
-										<div class="banner-slide">
-											<h2>坟头蹦迪、灵车漂移</h2>
-											<p>桂林南电子科技大学信息科技学院</p>
-										</div>
-									</li>
+
 						</ul>
 		</div>
 		<div class="clearfix"> </div>
@@ -137,7 +126,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>		
 <div class="banner-bottom-strip">
 	<div class="container">
-		<!--<p>欢迎选报金鸡岭驾校，还有优惠活动呢，快快立即报名吧...</p>-->
+		<!--<p>欢迎选报驾校考试系统，还有优惠活动呢，快快立即报名吧...</p>-->
 				<script type="text/javascript">
 			//滚动插件 
 			(function($){ 
@@ -148,8 +137,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			var _this=this.eq(0).find("ul:first"); 
 			var lineH=_this.find("li:first").height(), //获取行高 
 			line=opt.line?parseInt(opt.line,10):parseInt(this.height()/lineH,10), //每次滚动的行数，默认为一屏，即父容器高度 
-			speed=opt.speed?parseInt(opt.speed,10):500, //卷动速度，数值越大，速度越慢（毫秒） 
-			timer=opt.timer?parseInt(opt.timer,10):3000; //滚动的时间间隔（毫秒） 
+			speed=opt.speed?parseInt(opt.speed,10):3000, //卷动速度，数值越大，速度越慢（毫秒）
+			timer=opt.timer?parseInt(opt.timer,10):4000; //滚动的时间间隔（毫秒）
 			if(line==0) line=1; 
 			var upHeight=0-line*lineH; 
 			//滚动函数 
@@ -183,23 +172,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</style>
 		<div id="scrollDiv">
 			<ul>
-				<li>这是公告标题的第三行这是公告标题的第三行这是公告标题的第三行这是公告标题的第三行这是公告标题的第三行
-				            这是公告标题的第三行这是公告标题的第三行
+				<li>.您已成功预约一体化考场02月14日第一场的科目三 安全文明常识考试考试，请携带身份证明按时参加考试。如有特殊情况，请提前去车管所取消预约。
 				</li>
-				<li>这是公告标题的第三行这是公告标题的第三行这是公告标题的第三行这是公告标题的第三行这是公告标题的第三行
-				            这是公告标题的第三行这是公告标题的第三行
+				<li>请考生严格按照驾校当月已有的场次选择考试，如果选错考试日期或者考场，车管所一律取消考试资格。互联网预约过程中出现任何问题，请及时与驾校联系。
 				</li>
-				<li>这是公告标题的第三行这是公告标题的第三行这是公告标题的第三行这是公告标题的第三行这是公告标题的第三行
-				            这是公告标题的第三行这是公告标题的第三行
-				</li>
-				<li>这是公告标题的第三行这是公告标题的第三行这是公告标题的第三行这是公告标题的第三行这是公告标题的第三行
-				            这是公告标题的第三行这是公告标题的第三行
-				</li>
-				<li>这是公告标题的第三行这是公告标题的第三行这是公告标题的第三行这是公告标题的第三行这是公告标题的第三行
-				            这是公告标题的第三行这是公告标题的第三行
-				</li>
-				<li>这是公告标题的第三行这是公告标题的第三行这是公告标题的第三行这是公告标题的第三行这是公告标题的第三行
-				            这是公告标题的第三行这是公告标题的第三行
+				<li>
+					考试取号时段：第一场：8：00-9：00，第二场：10：00-11：00
 				</li>
 			</ul>
 		</div>
@@ -208,7 +186,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="welcome">
 	<div class="container">
 		<h3>驾校风光</h3>
-		<h5>欢迎您报考金鸡岭驾校.</h5>
 <div id="products" class="products">
 				<div class="col-md-4 product-grid">
 						<a href="/Views/Home/images/a1.jpg" class="b-link-stripe b-animate-go1   swipebox"  title="">
@@ -286,9 +263,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				     <img src="/Views/Home/kmIMG/k2.jpg" class="img-responsive zoom-img" alt=""/>
 				</a>
 			</div>
-			<div class="col-md-6 features-right">
-				<h4>科目名:场地驾驶技能考试科目　　满分成绩:100<br />考试类型:资格证考试 驾驶证考试 <br />考核标准:机动车驾驶证申领和使用规定 <br/><br/>掌握基础的驾驶操作要领，具备对车辆控制的基本能力；熟练掌握场地和场内道路驾驶的基本方法，具备合理使用车辆操纵机件、正确控制车辆运动空间位置的能力，能够准确地控制车辆的行驶位置、速度和路线。</h4>
-					<a href="/Views/Home/about.thml" class="hvr-bounce-to-bottom">Read More</a>
+			<div class="col-md-6 features-right" style="background-color: grey">
+				<h4>科目名:场地驾驶技能考试科目　　<br />满分成绩:100<br />考试类型:资格证考试 驾驶证考试 <br />考核标准:机动车驾驶证申领和使用规定 <br/><br/>掌握基础的驾驶操作要领，具备对车辆控制的基本能力；熟练掌握场地和场内道路驾驶的基本方法，具备合理使用车辆操纵机件、正确控制车辆运动空间位置的能力，能够准确地控制车辆的行驶位置、速度和路线。</h4>
 			</div>
 			<div class="clearfix"> </div>
 	  </div>
@@ -303,7 +279,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="col-md-6 features-right1">
 				<h4></h4>
 				<p>科目名:场地驾驶技能考试科目　　满分成绩:100<br />考试类型:资格证考试 驾驶证考试 <br />考核标准:机动车驾驶证申领和使用规定 <br/><br/>掌握基础的驾驶操作要领，具备对车辆控制的基本能力；熟练掌握场地和场内道路驾驶的基本方法，具备合理使用车辆操纵机件、正确控制车辆运动空间位置的能力，能够准确地控制车辆的行驶位置、速度和路线。</p>
-					<a href="/Views/Home/about.thml" class="hvr-bounce-to-bottom">Read More</a>
+
 			</div>
 						<div class="col-md-6 features-left1">
 							<a href="single.html"class="mask">
@@ -368,14 +344,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				 </div>
 				 <div class="col-md-3 get_in_touch ftr">
 					  <h3>联系我们</h3>
-					  <address style="color: white;">广西省桂林市金鸡岭驾校</address>
+					  <address style="color: white;">某省交警局驾照考试系统</address>
 					  <p>GuiLin . China</p>
-					  <p>+86 186 7733 8530</p>
+					  <p>+86 13607042810</p>
 				 </div>
 				 <div class="col-md-3 ftr-logo">
 					 <a href="#"><h3>我的信息</h3></a>
-					 <strong style="font-size: 20px;color: white;">学号:1251210111</strong><br />
-					 <strong style="font-size: 20px;color: white;">姓名:陈永鹏</strong></b>
+
+					 <strong style="font-size: 20px;color: white;">姓名:胡欣欣</strong></b>
 				 </div>
 				<div class="clearfix"> </div>
 			 </div>
@@ -399,8 +375,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!----> 
 
 <!--
-	作者：947796393@qq.com
-	时间：2016-03-06
+	作者：381828905@qq.com
+	时间：2019-03-06
 	描述：广告
 	
 -->
@@ -435,7 +411,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		dealy('qq_icon',2);						//2秒后显示QQ图标，默认为2秒，可自行设置
 		settop('qq_icon','cs_online',150);		//设置在线客服的高度，默认150，可自行设置
 		var span_q = getbyClass('cs_online','qq_num');
-		setqq(span_q,['947796393','947796393','947796393','947796393','947796393']);		//填写5个QQ号码
+		setqq(span_q,['381828905','381828905','381828905','381828905','381828905']);		//填写5个QQ号码
 		click_fn('qq_icon','cs_online');
 	});
 </script>

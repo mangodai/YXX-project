@@ -34,9 +34,13 @@ public class AdminController extends Controller {
 
 	/**
 	 * 登陆处理
-	 * @param url 
+	 * @param
 	 */
 	public void login() {
+		if (getSessionAttr("userName") != null) {
+			render("index.jsp");
+			return;
+		}
 		String url = null;
 		String userName = getPara("username");
 		String password = getPara("pwd");
@@ -67,9 +71,9 @@ public class AdminController extends Controller {
 		String schoolName = getPara("school");
 		String base64photo = getPara("base64photo");
 		String pcName = getPara("pcName");
-
-		Boolean saveFlage = new AdminService().savaExamer(userName, idCardNum,
-				sex, schoolName, base64photo, pcName);
+		String ip = IPUtil.getRealIpAddr(this.getRequest());
+		Boolean saveFlage = new AdminService().savaExamer(userName, idCardNum, sex, schoolName, base64photo, pcName);
+		renderText("exam/index");
 	}
 
 	public void sendPC() {
@@ -77,15 +81,15 @@ public class AdminController extends Controller {
 		String ip = IPUtil.getRealIpAddr(request);
 		List<DbPc> pcs = new AdminService().sendPC(ip);
 		System.out.println(pcs.iterator());
-		renderJson(ip);
+		renderJson(pcs);
 	}
 
 	/**
 	 * 添加考生信息时候自动分配计算机
 	 */
 	public void getPC() {
-		// HttpServletRequest request =this.getRequest();
-		// String IP = IPUtil.getRealIpAddr(request);
+//		 HttpServletRequest request =this.getRequest();
+//		 String IP = IPUtil.getRealIpAddr(request);
 		List<DbPc> pc = new AdminService().getPCInfo();
 		renderJson(pc);
 	}

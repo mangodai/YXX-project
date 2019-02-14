@@ -14,7 +14,7 @@
 			$(document).ready(function(){
 				$.ajax({
 					type:"post",
-					url:"exam/getZKZ",
+					url:"/exam/getZKZ",
 					async:true,
 					success:function(data){
 						console.info(data);
@@ -85,7 +85,7 @@
 						setTimeout(time(), 1);
 					});
 					function ks(){
-						window.location.href="http://127.0.0.1:9999/exam/startExam";
+						window.location.href="/exam/startExam";
 					}
 				</script>
 				<div class="space">

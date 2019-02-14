@@ -202,11 +202,11 @@
 					});
 
 	function photo() {
-		//				alert(video.videoWidth);
-		//				 var t=setTimeout("alert('5 seconds!')",2000)
-		//				var img = $('.myphoto')[0].src;
-		//				console.info(img);
-		//			    document.getElementById("test").src = this.img;
+						alert(video.videoWidth);
+						 var t=setTimeout("alert('5 seconds!')",2000);
+						var img = $('.myphoto')[0].src;
+						console.info(img);
+        		    document.getElementById("test").src = this.img;
 	}
 	//点击提交按钮的话,序号是自动+1
 	function render_btn(pdata) {
@@ -222,34 +222,34 @@
 	var ok_id;
 	//定义一个全局的保存错题总数的变量
 	var error_NUM = 0;
+	var true_num = 0;
 	//获取最终的分数，写入数据库，参数：
 	function finalMark() {
 		var photo = $('#take_photo').attr("src");
 		var id_card = $('#idCardNum').html().split(":");
-		if (error_NUM <= 10) {
-			var mark = 100 - error_NUM;
-			layer.alert("小主真棒呀！您已经通过科目一考试叻！您的分数是:" + mark + "分！", {
-				skin : 'layui-layer-lan',
-				closeBtn : 0,
-				shift : 4
-			//动画类型
-			});
-			$.ajax({
-				type : "post",
-				url : "SvaeToMark",
-				async : true,
-				data : {
-					"id_card" : id_card[1],
-					"mark" : mark,
-					"photo":photo
-				},
-				dataType : "json",
-				success : function(data) {
-					},
-				error:function(data){
-					}
-				});
-		}
+        var mark = 100 - error_NUM;
+        layer.alert("您的分数是:" + true_num + "分！", {
+            skin : 'layui-layer-lan',
+            closeBtn : 0,
+            shift : 4
+        //动画类型
+        });
+        $.ajax({
+            type: "post",
+            url: "SvaeToMark",
+            async: true,
+            data: {
+                "id_card": id_card[1],
+                "mark": true_num,
+                "photo": photo
+            },
+            dataType: "json",
+            success: function (data) {
+            },
+            error: function (data) {
+            }
+        });
+
 	}
 
 	function tjEvent() {
@@ -277,6 +277,7 @@
 
 				}
 				if (data.msg == "回答正确！") {
+                    true_num++;
 					//错误就把当前的答题卡该题目背景变色
 					$(now_id_yy).addClass("success");
 
@@ -302,6 +303,7 @@
 					//按钮
 					}, function() {
 						//触发离开的事件
+                        finalMark();
 						window.history.back(-1);
 					}, function() {
 						//触发继续考试的事件
@@ -342,19 +344,19 @@
 	<div class="content">
 		<div class="left_info">
 			<!--
-                	作者：947796393@qq.com
-                	时间：2016-02-28
+                	作者：381828905@qq.com
+                	时间：2019-02-28
                 	描述：
                 -->
 			<div class="ks_lx">
 				<fieldset>
 					<legend id="title">考试类型</legend>
-					<p id="info">广西省桂林市科目一考试</p>
+					<p id="info">驾照考试系统</p>
 				</fieldset>
 			</div>
 			<!--
-                	作者：947796393@qq.com
-                	时间：2016-02-28
+                	作者：381828905@qq.com
+                	时间：2019-02-28
                 	描述：
                 -->
 			<div class="ks_sj">
@@ -368,8 +370,8 @@
 				</fieldset>
 			</div>
 			<!--
-                	作者：947796393@qq.com
-                	时间：2016-02-28
+                	作者：381828905@qq.com
+                	时间：2019-02-28
                 	描述：
                 -->
 			<div class="user_info">
@@ -381,7 +383,7 @@
 								width="240px" autoplay="autoplay" onclick="photo()"></video>
 							<img id="take_photo" style="display: none;" src="">
 							<canvas style="display: none;"></canvas>
-							<script src="/Views/Exam/js/photo.js"></script>
+							<script src="/Views/Exam/js/photo2.js"></script>
 						</center>
 					</div>
 
@@ -390,20 +392,20 @@
 							class="info"></span><br /> <span id="idCardNum" class="info"></span><br />
 						<span class="info">驾考车型 ：C1</span><br /> <span id="school"
 							class="info"></span><br /> <span id="kd" class="info">考点名称
-							：金鸡岭驾校</span><br />
+							：驾校考试系统</span><br />
 					</div>
 				</fieldset>
 			</div>
 		</div>
 		<!--
-                	作者：947796393@qq.com
-                	时间：2016-02-28
+                	作者：381828905@qq.com
+                	时间：2019-02-28
                 	描述：
                 -->
 		<div class="right_info">
 			<!--
-                	作者：947796393@qq.com
-                	时间：2016-02-28
+                	作者：381828905@qq.com
+                	时间：2019-02-28
                 	描述：
                 -->
 			<div class="ks_nr">
@@ -594,7 +596,7 @@
 				<fieldset>
 					<legend id="title">广告更精彩</legend>
 					<p id="ad"
-						style="color: #FF0000; font-size: 20px; font-weight: bold;">金鸡岭驾校温馨提醒您：90分为合格！</p>
+						style="color: #FF0000; font-size: 20px; font-weight: bold;">驾校考试系统温馨提醒您：90分为合格！</p>
 				</fieldset>
 			</div>
 		</div>
@@ -691,8 +693,8 @@
 	</script>
 </body>
 <!--
-        	作者：947796393@qq.com
-        	时间：2016-04-25
+        	作者：381828905@qq.com
+        	时间：2019-04-25
         	描述：
           //弹出一个页面层
 	      layer.open({

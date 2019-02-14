@@ -1,7 +1,7 @@
 //mysql配置文件
-mysql.jdbcUrl = jdbc:mysql://127.0.0.1/chen?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+mysql.jdbcUrl = jdbc:mysql://127.0.0.1/jxksxt?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
 mysql.user = root
-mysql.password = 123456
+mysql.password = root
 
 //oracle配置文件
 oracle.driver=oracle.jdbc.driver.OracleDriver
